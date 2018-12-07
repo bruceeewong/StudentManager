@@ -36,7 +36,7 @@ function refresh(data) {
 function findAll() {
     $.ajax({
         type: "GET",
-        url: "http://127.0.0.1:3000/students",
+        url: "http://120.79.15.25:3000//students",
         success: (data) => {
             refresh(data);
         },
@@ -51,7 +51,7 @@ function insertStu(event) {
     // event.preventDefault();
     $.ajax({
         type: "POST",
-        url: "http://127.0.0.1:3000/addStudent",
+        url: "http://120.79.15.25:3000/addStudent",
         data: $('#stuInfo').serialize(),
         dataType: "text",
         success: (data) => {
@@ -70,7 +70,7 @@ function modifyStu(event) {
 
     $.ajax({
         type: "POST",
-        url: "http://127.0.0.1:3000/modifyStudent",
+        url: "http://120.79.15.25:3000/modifyStudent",
         data: $('#modifyStuForm').serialize(),
         success: (data) => {
             alert("修改成功!");
@@ -93,7 +93,7 @@ function deleteStu(id) {
 
     $.ajax({
         type: "POST",
-        url: "http://127.0.0.1:3000/deleteStudent",
+        url: "http://120.79.15.25:3000/deleteStudent",
         data: data,
         success: () => {
             alert('删除成功!');
