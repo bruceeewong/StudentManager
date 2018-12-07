@@ -1,0 +1,11 @@
+.circle {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+.male {
+    background-color: #007bff;
+}
+.female {
+    background-color: #dc3545;
+}
