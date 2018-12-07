@@ -1,4 +1,16 @@
 const db = require('../database');
+const fs = require('mz/fs');
+const path = require('path');
+
+
+
+const fn_index = async (ctx, next) => {
+
+    let fpath = path.join(__dirname, '../../');
+
+    ctx.response.type = 'text/html';
+    ctx.response.body = await fs.readFile(fpath + 'index.html');
+};
 
 const fn_findAllStudents = async (ctx, next) => {
     let students = await db.findAllStudents();
@@ -56,6 +68,7 @@ const fn_deleteStudent = async (ctx, next) => {
 };
 
 module.exports = {
+    'GET /': fn_index,
     'GET /students': fn_findAllStudents,
     'POST /addStudent': fn_addStudent,
     'POST /modifyStudent': fn_modifyStudent,
