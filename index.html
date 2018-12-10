@@ -9,181 +9,213 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <title>Student Manager</title>
 </head>
-<body class="bg-light">
-    <div class="container">
-        <div class="py-5 text-center">
-            <img class="mb-4" src="static/image/logo.png" width="95" height="70">
-            <h1>学生注册管理系统</h1>
-            <p class="lead">本系统用于录入学生的基本信息: 姓名 性别 学号 学院 专业 班级</p>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow">
+        <div class="container">
+            <a class="navbar-brand" href="/">Student Manager</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link">管理员</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">退出</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <div class="col-md-12">
+            <div class="pt-5 pb-3 text-center">
+                <img class="mb-4" src="static/image/logo.png" width="95" height="70">
+                <h2 class="h2">学生注册管理系统</h2>
+                <p class="lead">本系统用于录入学生的基本信息</p>
+            </div>
         </div>
         <div class="row">
-            <div class="col-sm-4 mt-3">
-                <h4>添加学生信息</h4>
-                <form id="stuInfo">
-                    <div class="form-group">
-                        <label class="col-form-label">学生姓名</label>
-                        <input type="text" name="sname" class="form-control" placeholder="姓名"
-                               pattern="^[\u4e00-\u9fa5_a-zA-Z]+$" title="请输入中文或英文字符"  required>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">添加学生信息</h5>
                     </div>
-                    <div class="form-group">
-                        <label class="col-form-label">性别</label>
-                        <div class="custom-control custom-radio">
-                            <input type="radio" name="sgender" value="male" id="sgender1" class="custom-control-input" checked>
-                            <label class="custom-control-label" for="sgender1" >男</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                            <input type="radio" name="sgender" value="female" id="sgender2" class="custom-control-input">
-                            <label class="custom-control-label" for="sgender2">女</label>
-                        </div>
+                    <div class="card-body">
+                        <form id="stuInfo">
+                            <div class="form-group">
+                                <label class="col-form-label">学生姓名</label>
+                                <input type="text" name="sname" class="form-control" placeholder="姓名"
+                                       pattern="^[\u4e00-\u9fa5_a-zA-Z]+$" title="请输入中文或英文字符"  required>
+                            </div>
+                            <div class="form-group">
+                                <legend class="col-form-label">性别</legend>
+                                <div class="custom-control custom-radio custom-control-inline ml-1">
+                                    <input type="radio" name="sgender" value="male" id="sgender1" class="custom-control-input" checked>
+                                    <label class="custom-control-label" for="sgender1" >男</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" name="sgender" value="female" id="sgender2" class="custom-control-input">
+                                    <label class="custom-control-label" for="sgender2">女</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">学号</label>
+                                <input type="text" name="snum" class="form-control" placeholder="学号"
+                                       pattern="^[\w]+$" title="请输入数字/英文/下划线" required>
+                            </div>
+                            <div class="form-group">
+                                <label>学院</label>
+                                <select name="sschool" class="custom-select">
+                                    <option disabled value="">请选择</option>
+                                    <option value="软件学院" >软件学院</option>
+                                    <option value="计算机学院">计算机学院</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">专业</label>
+                                <select name="smajor" class="custom-select">
+                                    <option disabled value="">请选择</option>
+                                    <option value="软件工程" >软件工程</option>
+                                    <option value="数字媒体技术">数字媒体技术</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">班级</label>
+                                <select name="sclass" class="custom-select">
+                                    <option disabled value="">请选择</option>
+                                    <option value="1501班" >1501班</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">入学年份</label>
+                                <input type="date" name="stime" class="form-control" required>
+                            </div>
+                            <button type="submit" id="addStuBtn" class="btn btn-lg btn-dark col-sm-12">添加学生</button>
+                        </form>
                     </div>
-                    <div class="form-group">
-                        <label class="col-form-label">学号</label>
-                        <input type="text" name="snum" class="form-control" placeholder="学号"
-                               pattern="^[\w]+$" title="请输入数字/英文/下划线" required>
-                    </div>
-                    <div class="form-group">
-                        <label>学院</label>
-                        <select name="sschool" class="form-control">
-                            <option disabled value="">请选择</option>
-                            <option value="软件学院" >软件学院</option>
-                            <option value="计算机学院">计算机学院</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-form-label">专业</label>
-                        <select name="smajor" class="form-control">
-                            <option disabled value="">请选择</option>
-                            <option value="软件工程" >软件工程</option>
-                            <option value="数字媒体技术">数字媒体技术</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-form-label">班级</label>
-                        <select name="sclass" class="form-control">
-                            <option disabled value="">请选择</option>
-                            <option value="1501班" >1501班</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-form-label">入学年份</label>
-                        <input type="date" name="stime" class="form-control" required>
-                    </div>
-                    <button type="submit" id="addStuBtn" class="btn btn-lg btn-primary col-sm-12">添加学生</button>
-                </form>
+                </div>
             </div>
-            <div class="col-sm-1"></div>
-            <div class="col-sm-7" id="stu-list">
-                <h4 class="mt-3">学生列表</h4>
-                <ul class="list-group">
-                    <template v-for="(stu, index) in students">
-                        <li class="list-group-item">
-                            <div class="row justify-content-center align-items-center">
-                                <div class="col-sm-9">
-                                    <div class="row align-items-center">
-                                        <div class="col-sm-2">
-                                            <small>{{ stu.sname }}</small>
-                                        </div>
-                                        <div v-if="stu.sgender === 'male'" class="col-sm-1">
-                                            <small>男</small>
-                                        </div>
-                                        <div v-else class="col-sm-1">
-                                            <small>女</small>
-                                        </div>
-                                        <div class="col-sm-6 ml-auto">
-                                            <small>{{ stu.snum }}</small>
-                                        </div>
-                                        <div class="w-100"></div>
-                                        <div class="col-sm-6">
-                                            <small>{{ stu.sschool }}-{{ stu.smajor }}-{{ stu.sclass }}</small>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <small>入学年份: {{ stu.stime}}</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-2">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-success btn-sm" v-on:click="v_modifyStu(index)">修改</button>
-                                        <button type="button" class="btn btn-danger btn-sm" v-on:click="v_deleteStu(stu.id)">删除</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </template>
-                </ul>
-                <div class="modal fade" id="modifyStuModal">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title">修改学生信息</h4>
-                                <button type="button" class="close" data-dismiss="modal">
-                                    <span>&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form id="modifyStuForm">
-                                    <div class="form-group">
-                                        <label class="col-form-label">学生姓名</label>
-                                        <input type="text" id="snameModal" name="sname" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-form-label">性别</label>
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" name="sgender" value="male" id="sgenderModal1" class="custom-control-input">
-                                            <label class="custom-control-label" for="sgenderModal1" >男</label>
-                                        </div>
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" name="sgender" value="female" id="sgenderModal2" class="custom-control-input">
-                                            <label class="custom-control-label" for="sgenderModal2">女</label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-form-label">学号</label>
-                                        <input type="text" id="snumModal" name="snum" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-form-label">学院</label>
-                                        <select name="sschool" id="sschoolModal" class="form-control">
-                                            <option disabled value="">请选择</option>
-                                            <option value="软件学院" >软件学院</option>
-                                            <option value="计算机学院">计算机学院</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-form-label">专业</label>
-                                        <select name="smajor" id="smajorModal" class="form-control">
-                                            <option disabled value="">请选择</option>
-                                            <option value="软件工程" >软件工程</option>
-                                            <option value="数字媒体技术">数字媒体技术</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-form-label">班级</label>
-                                        <select name="sclass" id="sclassModal" class="form-control">
-                                            <option disabled value="">请选择</option>
-                                            <option value="1501班" >1501班</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-form-label">入学年份</label>
-                                        <input type="date" id="stimeModal" name="stime" class="form-control">
-                                    </div>
-                                    <input type="hidden" name="id" id="modifyIdModal">
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                                <button type="submit" id="comfirmModifyBtn" onclick="modifyStu(event)" class="btn btn-primary">确认修改</button>
-                            </div>
-                        </div>
+            <div class="col-md-8" id="stu-list">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">学生列表</h5>
                     </div>
-
+                    <div class="card-body">
+                        <ul class="list-group">
+                            <template v-for="(stu, index) in students">
+                                <li class="list-group-item">
+                                    <div class="row justify-content-center align-items-center">
+                                        <div class="col-sm-9">
+                                            <div class="row align-items-center">
+                                                <div class="col-sm-2">
+                                                    <small>{{ stu.sname }}</small>
+                                                </div>
+                                                <div v-if="stu.sgender === 'male'" class="col-sm-1">
+                                                    <small>男</small>
+                                                </div>
+                                                <div v-else class="col-sm-1">
+                                                    <small>女</small>
+                                                </div>
+                                                <div class="col-sm-6 ml-auto">
+                                                    <small>{{ stu.snum }}</small>
+                                                </div>
+                                                <div class="w-100"></div>
+                                                <div class="col-sm-6">
+                                                    <small>{{ stu.sschool }}-{{ stu.smajor }}-{{ stu.sclass }}</small>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <small>入学年份: {{ stu.stime}}</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-dark btn-sm" v-on:click="v_modifyStu(index)">修改</button>
+                                                <button type="button" class="btn btn-danger btn-sm" v-on:click="v_deleteStu(stu.id)">删除</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
         <footer class="my-5 pt-5 text-muted text-center text-small">
             <p>&copy;2018 HUST SSE</p>
         </footer>
+    </div>
+    <div class="modal fade" id="modifyStuModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">修改学生信息</h4>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <form id="modifyStuForm">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="col-form-label">学生姓名</label>
+                            <input type="text" id="snameModal" name="sname" class="form-control"
+                                   pattern="^[\u4e00-\u9fa5_a-zA-Z]+$" title="请输入中文或英文字符"  required>
+                        </div>
+                        <div class="form-group">
+                            <legend class="col-form-label">性别</legend>
+                            <div class="custom-control custom-radio custom-control-inline ml-1">
+                                <input type="radio" name="sgender" value="male" id="sgenderModal1" class="custom-control-input" checked>
+                                <label class="custom-control-label" for="sgenderModal1" >男</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" name="sgender" value="female" id="sgenderModal2" class="custom-control-input">
+                                <label class="custom-control-label" for="sgenderModal2">女</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label">学号</label>
+                            <input type="text" id="snumModal" name="snum" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label">学院</label>
+                            <select name="sschool" id="sschoolModal" class="form-control" required>
+                                <option disabled value="">请选择</option>
+                                <option value="软件学院" >软件学院</option>
+                                <option value="计算机学院">计算机学院</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label">专业</label>
+                            <select name="smajor" id="smajorModal" class="form-control" required>
+                                <option disabled value="">请选择</option>
+                                <option value="软件工程" >软件工程</option>
+                                <option value="数字媒体技术">数字媒体技术</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label">班级</label>
+                            <select name="sclass" id="sclassModal" class="form-control" required>
+                                <option disabled value="">请选择</option>
+                                <option value="1501班" >1501班</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label">入学年份</label>
+                            <input type="date" id="stimeModal" name="stime" class="form-control" required>
+                        </div>
+                        <input type="hidden" name="id" id="modifyIdModal">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                        <button type="submit" id="comfirmModifyBtn" class="btn btn-dark">确认修改</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
     </div>
 
 
