@@ -36,7 +36,7 @@ function refresh(data) {
 function findAll() {
     $.ajax({
         type: "GET",
-        url: "http://120.79.15.25:3000//students",
+        url: "http://120.79.15.25:3000/students",
         success: (data) => {
             refresh(data);
         },
@@ -47,8 +47,6 @@ function findAll() {
 }
 
 function insertStu(event) {
-
-    // event.preventDefault();
     $.ajax({
         type: "POST",
         url: "http://120.79.15.25:3000/addStudent",
@@ -62,12 +60,11 @@ function insertStu(event) {
             alert("添加学生失败:" + error);
         }
     });
+
+    event.preventDefault();
 }
 
 function modifyStu(event) {
-
-    event.preventDefault();
-
     $.ajax({
         type: "POST",
         url: "http://120.79.15.25:3000/modifyStudent",
@@ -81,7 +78,12 @@ function modifyStu(event) {
             console.log(error);
         }
     });
+
+    event.preventDefault();
+
     $('#modifyStuModal').modal('hide');
+
+
 
 }
 
@@ -106,15 +108,33 @@ function deleteStu(id) {
     })
 }
 
-window.addEventListener('load', findAll());
+window.addEventListener('load', function () {
+    $('#student-list-tab').tab('show');
+});
 
-$('#addStuBtn').on('click', (e) => {
+$('#student-list-pane').on('show.bs.tab', function () {
+    findAll();
+});
+
+// $('#addStuBtn').on('click', (e) => {
+//     insertStu(e);
+// });
+
+$('#stuInfo').on('submit', (e) => {
     insertStu(e);
+    console.log(e)
+    e.preventDefault();
 });
 
-$('#comfirmModifyBtn').on('click', (e) => {
+$('#modifyStuForm').on('submit', (e) => {
     modifyStu(e);
+    console.log(e)
+    return false;
 });
+
+// $('#comfirmModifyBtn').on('click', (e) => {
+//     modifyStu(e);
+// });
 
 var stuList = new Vue({
     el: '#stu-list',
